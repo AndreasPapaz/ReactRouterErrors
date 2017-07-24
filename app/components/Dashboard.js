@@ -17,7 +17,7 @@ export default class Dashboard extends Component {
 	componentWillMount() {
 
 		var userId = localStorage.getItem('userId');
-		// console.log('USERID : ', userId);
+		console.log('USERID : ', userId);
 
 		this.state = { activeItem: 'bio'}
 
@@ -77,7 +77,7 @@ export default class Dashboard extends Component {
 
         <Grid.Column stretched width={12}>
           <Segment>
-            {this.props.children} {this.state.user.name}
+            {this.props.children}
           </Segment>
         </Grid.Column>
       </Grid>

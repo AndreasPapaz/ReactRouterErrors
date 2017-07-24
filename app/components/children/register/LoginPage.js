@@ -41,7 +41,7 @@ class LoginPage extends React.Component {
       email: this.state.user.email,
       password: this.state.user.password
     }
-
+    console.log(cred);
     axios.post('/login', cred).then(function(res) {
       // console.log(res.data);
       window.localStorage.setItem('userId', res.data._id);
@@ -49,40 +49,6 @@ class LoginPage extends React.Component {
     }.bind(this)).catch(function(err) {
       console.log('login err : ' + err);
     });
-
-    // create an AJAX request
-    // const xhr = new XMLHttpRequest();
-    // xhr.open('post', '/auth/login');
-    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // xhr.responseType = 'json';
-    // xhr.addEventListener('load', () => {
-    //   if (xhr.status === 200) {
-    //     // success
-
-    //     // change the component-container state
-    //     this.setState({
-    //       errors: {}
-    //     });
-
-    //     // save the token
-    //     Auth.authenticateUser(xhr.response.token);
-
-
-    //     // change the current URL to /
-    //     this.context.router.replace('/');
-    //   } else {
-    //     // failure
-
-    //     // change the component state
-    //     const errors = xhr.response.errors ? xhr.response.errors : {};
-    //     errors.summary = xhr.response.message;
-
-    //     this.setState({
-    //       errors
-    //     });
-    //   }
-    // });
-    // xhr.send(formData);
   }
 
   changeUser(event) {

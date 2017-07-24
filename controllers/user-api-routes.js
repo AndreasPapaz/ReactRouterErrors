@@ -4,18 +4,17 @@ const isAuthenticated = require('../passport/middleware/isAuthenticated');
 module.exports = function(app, passport) {
 
     app.post("/login", passport.authenticate("local"), function(req, res){
-        // console.log("you have hit the login route" + req.user);
-        // console.log(req.isAuthenticated === true);
-        res.json('/dashboard');
+        console.log("you have hit the login route" + req.user);
+        console.log(req.isAuthenticated === true);
         if (req.user) {
             res.json(req.user);
         }
     });
 
-    app.get('/dashboard', function(req, res) {
-        console.log('the url rt for dash');
-        console.log(req.body);
-    });
+    // app.get('/dashboard', function(req, res) {
+    //     console.log('the url rt for dash');
+    //     console.log(req.body);
+    // });
 
 
    app.post('/getUser', function(req, res) {
@@ -34,28 +33,14 @@ module.exports = function(app, passport) {
         });
    });
 
-    // app.use('*', function(req, res) {
-    //     var dir = __dirname;
-    //     var dirSplit = dir.split("controllers");
-    //     dir = dirSplit[0];
+    app.use('*', function(req, res) {
+        var dir = __dirname;
+        var dirSplit = dir.split("controllers");
+        dir = dirSplit[0];
 
-    //     res.sendFile(dir + '/public/index.html');
-    // });
+        res.sendFile(dir + '/public/index.html');
+    });
 
-
-    // app.post('/signup', function(req, res) {
-
-    //     User.findOne({
-    //         email: req.body.email
-    //     }, function(err, res) {
-    //         if (err) {
-    //             console.log(err);
-    //         }
-    //         if (!res) {
-
-    //         }
-    //     })
-    // })
 
     app.post('/signup', function(req, res) {
         console.log("new signup rt : " + req.body);
@@ -71,24 +56,4 @@ module.exports = function(app, passport) {
             }
         });
     });
-
-    app.get('/jimmyjohns', isAuthenticated, function(req, res) {
-       console.log("hi him");
-    });
-
-    // app.get('/jimmyjohns', function(req, res) {
-    //     console.log(req.isAuthenticated === true);
-    //     if(req.isAuthenticated()) {
-    //         res.json({
-    //             auth: req.isAuthenticated()
-    //         });
-    //     } else {
-    //         res.json({
-    //             auth: false
-    //         });
-    //     }
-    // });
-
-    // app.get('/jimmyjohns', passport.authenticate('local', { successRedirect: '/awesomeyouaraseome', failureRedirect: '/notauthentic'}));
-
 };
