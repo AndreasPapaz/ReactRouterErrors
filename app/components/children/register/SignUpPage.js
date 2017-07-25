@@ -16,7 +16,7 @@ class SignUpPage extends React.Component {
 				email: '',
 				name: '',
 				password: '',
-                img: ''
+        img: ''
 			}
 		};
 		this.processForm = this.processForm.bind(this);
@@ -74,14 +74,16 @@ class SignUpPage extends React.Component {
     event.preventDefault();
 
     const cred = {
-    	email: this.state.user.email,
-        name: this.state.user.name,
-    	password: this.state.user.password,
-        img: this.state.user.img
+    email: this.state.user.email,
+    name: this.state.user.name,
+    password: this.state.user.password,
+    img: this.state.user.img
     };
 
+    console.log("this is your cred : ", cred); 
     axios.post('/signup', cred).then(function(res) {
-    	// console.log(res.data._id);
+      console.log("you are hitting the signup route");
+    	console.log(res.data._id);
         window.localStorage.setItem('userId', res.data._id);
     	this.context.router.push('/');
     }.bind(this)).catch(function(err) {
@@ -102,16 +104,16 @@ class SignUpPage extends React.Component {
  	render() {
 
  		return (
-            <div>
-                <h4> {this.state.imageLink} </h4>
-                <Dropzone onDrop={this.uploadFile.bind(this)} />
-                <Image src={this.state.user.img} size='small' />
-    			<SignUpForm
-    				onSubmit={this.processForm}
-    				onChange={this.changeUser}
-    				user={this.state.user}
-    			/>
-            </div>
+      <div>
+        <h4> {this.state.imageLink} </h4>
+        <Dropzone onDrop={this.uploadFile.bind(this)} />
+          <Image src={this.state.user.img} size='small' />
+        <SignUpForm
+        onSubmit={this.processForm}
+        onChange={this.changeUser}
+        user={this.state.user}
+        />
+      </div>
  		);
  	}
 }

@@ -4,7 +4,7 @@ const isAuthenticated = require('../passport/middleware/isAuthenticated');
 module.exports = function(app, passport) {
 
     app.post("/login", passport.authenticate("local"), function(req, res){
-        console.log("you have hit the login route" + req.user);
+        // console.log("you have hit the login route" + req.user);
         console.log(req.isAuthenticated === true);
         if (req.user) {
             res.json(req.user);
@@ -21,29 +21,31 @@ module.exports = function(app, passport) {
     // console.log(req.body);
         User.findOne({
             _id: req.body.userId
-        }, function(err, Ures) {
+        }, function(err, User) {
+            // console.log("this is the user");
+            // console.log(User);
             if (err) {
                 console.log(err);
             }
-            if (!Ures) {
+            if (!User) {
                 res.json(false);
             } else {
-                res.json(Ures);
+                res.json(User);
             }
         });
    });
 
-    app.use('*', function(req, res) {
-        var dir = __dirname;
-        var dirSplit = dir.split("controllers");
-        dir = dirSplit[0];
+    // app.use('*', function(req, res) {
+    //     var dir = __dirname;
+    //     var dirSplit = dir.split("controllers");
+    //     dir = dirSplit[0];
 
-        res.sendFile(dir + '/public/index.html');
-    });
+    //     res.sendFile(dir + '/public/index.html');
+    // });
 
 
     app.post('/signup', function(req, res) {
-        console.log("new signup rt : " + req.body);
+        console.log("new signup rt");
         console.log(req.body);
 
         var user = new User(req.body);

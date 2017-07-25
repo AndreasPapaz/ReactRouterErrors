@@ -25,10 +25,11 @@ class LoginPage extends React.Component {
   componentWillMount() {
 
     var userId = localStorage.getItem('userId');
-    // console.log('USERID fomr login : ', userId);
+    console.log('USERID fomr login : ', userId);
+    console.log(userId === undefined);
 
-    if(userId) {
-      // console.log("user is not null");
+    if(userId !== undefined && userId !== null) {
+      console.log("user is not null");
       this.context.router.push('/dashboard');
     }
 
