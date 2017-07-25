@@ -12,7 +12,11 @@ const UserSchema = new Schema({
   birthday: String,
   name: String,
   password: String,
-  img: String
+  img: String,
+  journal: {
+    type: Schema.Types.ObjectId,
+    ref: 'Journal'
+  }
 });
 
 

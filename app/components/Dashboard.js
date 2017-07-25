@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes } from 'react';
 import { Image } from 'semantic-ui-react';
 import axios from 'axios';
 import { Button, Checkbox, Form, Grid, Menu, Segment } from 'semantic-ui-react'
@@ -18,7 +18,7 @@ export default class Dashboard extends Component {
 		console.log("clicking on new state");
 		console.log(e);
 		console.log(name);
-		browserHistory.push(name);
+		browserHistory.push('/dashboard/' + name);
 	}
 
 	componentWillMount() {
@@ -88,7 +88,7 @@ export default class Dashboard extends Component {
 		<Grid.Column width={4}>
 			<Menu fluid vertical tabular>
 			<Menu.Item name='bio' active={activeItem === 'bio'} onClick={this.handleItemClick} />
-			<Menu.Item name='pics' active={activeItem === 'pics'} onClick={this.handleItemClick} />
+			<Menu.Item name='entry' active={activeItem === 'Entry'} onClick={this.handleItemClick} />
 			<Menu.Item name='companies' active={activeItem === 'companies'} onClick={this.handleItemClick} />
 			<Menu.Item name='links' active={activeItem === 'links'} onClick={this.handleItemClick} />
 			</Menu>
@@ -110,6 +110,6 @@ Dashboard.contextTypes = {
   router: React.PropTypes.any
 };
 
-// Dashboard.PropTypes = {
-//     children: PropTypes.object.isRequired
-// };
+Dashboard.PropTypes = {
+    children: PropTypes.object.isRequired
+};

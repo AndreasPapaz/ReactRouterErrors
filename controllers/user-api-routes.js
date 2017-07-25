@@ -1,5 +1,6 @@
 const User = require("../model/User");
 const isAuthenticated = require('../passport/middleware/isAuthenticated');
+const passport = require('passport');
 
 module.exports = function(app, passport) {
 
@@ -10,6 +11,15 @@ module.exports = function(app, passport) {
             res.json(req.user);
         }
     });
+
+    // app.post('/login', function(req, res, next) {
+    //   passport.authenticate('local', function(err, user) {
+    //     if(err) {
+    //       console.log(err);
+    //     }
+    //     console.log(user);
+    //   })(req, res, next);
+    // });
 
     // app.get('/dashboard', function(req, res) {
     //     console.log('the url rt for dash');
