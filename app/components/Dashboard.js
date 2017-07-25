@@ -35,7 +35,8 @@ export default class Dashboard extends Component {
 
 	initializeState() {
 		this.setState({
-			name: ''
+			name: '',
+			img: ''
 		})
 	}
 
@@ -54,9 +55,10 @@ export default class Dashboard extends Component {
 			// console.log(userId);
 			axios.post('/getUser', {'userId': userId}).then(res => {
 				console.log(res.data.name);
-
+				console.log(res.data.img);
 				this.setState({
-					name: res.data.name
+					name: res.data.name,
+					img: res.data.img
 				});
 				if (!res) {
 					console.log("no user");
@@ -74,7 +76,8 @@ export default class Dashboard extends Component {
 		const { activeItem } = this.state;
 		const childrenWithProps = React.Children.map(this.props.children, child => {
 			return React.cloneElement(child, {
-				name: this.state.name
+				name: this.state.name,
+				img: this.state.img
 			});
 		});
 

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { browserHistory, Router } from 'react-router';
 import { Image } from 'semantic-ui-react'
-import SignUpForm from './SignUpForm';
+import SignUpForm2 from './SignUPForm2';
 import axios from 'axios';
 import Dropzone from 'react-dropzone'
 import superagent from 'superagent'
@@ -14,6 +14,7 @@ class SignUpPage extends React.Component {
 			errors: {},
 			user: {
 				email: '',
+        birthday: '',
 				name: '',
 				password: '',
         img: ''
@@ -75,6 +76,7 @@ class SignUpPage extends React.Component {
 
     const cred = {
     email: this.state.user.email,
+    birthday: this.state.user.birthday,
     name: this.state.user.name,
     password: this.state.user.password,
     img: this.state.user.img
@@ -108,7 +110,7 @@ class SignUpPage extends React.Component {
         <h4> {this.state.imageLink} </h4>
         <Dropzone onDrop={this.uploadFile.bind(this)} />
           <Image src={this.state.user.img} size='small' />
-        <SignUpForm
+        <SignUpForm2
         onSubmit={this.processForm}
         onChange={this.changeUser}
         user={this.state.user}
