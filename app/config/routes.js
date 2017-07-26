@@ -8,15 +8,16 @@ import SignUpPage from '../components/children/register/SignUpPage';
 import Dashboard from '../components/Dashboard';
 import test from '../components/children/dashboard/test';
 import JournalPage from '../components/children/dashboard/JournalPage';
+import Journal from '../components/children/dashboard/Journal';
 
 export default (
 
 	<Router history={browserHistory}>
 		<Route path='/' component={LandingPage}>
 			<Route path='dashboard' component={Dashboard}>
-				<Route path='test' component={test} />
+				<Route path='bio' component={test} />
 				<Route path='entry' component={JournalPage} />
-				<Route path='thistest' component={JournalPage} />
+				<Route path='journal' component={Journal} />
 				<IndexRoute component={test} />
 			</Route>
 			<Route path='login' component={LoginPage} />

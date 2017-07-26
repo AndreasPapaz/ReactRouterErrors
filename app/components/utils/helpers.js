@@ -16,13 +16,10 @@ var helpers = {
       location + "&pretty=1&key=" + geocodeAPI;
 
     return axios.get(queryURL).then(function(res) {
-    	// console.log('welcome to the helpers');
-      // console.log(res.data.results[0].components.country);
       return res.data.results[0].components;
     });
   }
 };
 
-// We export the helpers object (which contains runQuery)
 module.exports = helpers;
 

@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 
 // define the User model schema
 const JournalSchema = new Schema({
-  title: {
+  user: {
     type: String
   },
-  img: {
-  	type: String
+  title: {
+    type: String
   },
   body: {
     type: String

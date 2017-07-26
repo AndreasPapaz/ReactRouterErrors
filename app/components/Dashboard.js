@@ -29,15 +29,8 @@ export default class Dashboard extends Component {
 		this.state = { activeItem: 'bio'}
 
 		this.checkId(userId);
-		this.initializeState();
+		// this.initializeState();
 		this.signOut = this.signOut.bind(this);
-	}
-
-	initializeState() {
-		this.setState({
-			name: '',
-			img: ''
-		})
 	}
 
 	signOut() {
@@ -57,6 +50,7 @@ export default class Dashboard extends Component {
 				console.log(res.data.name);
 				console.log(res.data.img);
 				this.setState({
+					user: res.data._id,
 					name: res.data.name,
 					img: res.data.img
 				});
@@ -88,8 +82,8 @@ export default class Dashboard extends Component {
 		<Grid.Column width={4}>
 			<Menu fluid vertical tabular>
 			<Menu.Item name='bio' active={activeItem === 'bio'} onClick={this.handleItemClick} />
-			<Menu.Item name='entry' active={activeItem === 'Entry'} onClick={this.handleItemClick} />
-			<Menu.Item name='companies' active={activeItem === 'companies'} onClick={this.handleItemClick} />
+			<Menu.Item name='entry' active={activeItem === 'entry'} onClick={this.handleItemClick} />
+			<Menu.Item name='journal' active={activeItem === 'journal'} onClick={this.handleItemClick} />
 			<Menu.Item name='links' active={activeItem === 'links'} onClick={this.handleItemClick} />
 			</Menu>
 		</Grid.Column>

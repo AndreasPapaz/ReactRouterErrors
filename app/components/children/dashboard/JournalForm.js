@@ -1,15 +1,19 @@
 import React, { PropTypes } from 'react';
 import { Button, Checkbox, Form, Icon, Card} from 'semantic-ui-react';
 import { Link } from 'react-router';
+import axios from 'axios';
+import Dropzone from 'react-dropzone'
+import superagent from 'superagent'
+import sha1 from 'sha1'
 
 const JournalForm = ({
 	onSubmit,
+	onDrop,
 	onChange,
 	entry,
 }) => (
 
 	<Form className='' action='/' onSubmit={onSubmit}>
-
 		<Form.Field>
 			<label>Title</label>
 			<input

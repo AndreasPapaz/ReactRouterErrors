@@ -3,9 +3,6 @@ import { browserHistory, Router } from 'react-router';
 import { Image } from 'semantic-ui-react'
 import JournalForm from './JournalForm';
 import axios from 'axios';
-import Dropzone from 'react-dropzone'
-import superagent from 'superagent'
-import sha1 from 'sha1'
 
 import helpers from '../../utils/helpers';
 
@@ -17,6 +14,7 @@ class JournalPage extends React.Component {
 		this.state = {
 			errors: {},
 			entry: {
+				user: '',
 				title: '',
 				body: '',
 				location: '',
@@ -27,18 +25,27 @@ class JournalPage extends React.Component {
 		this.changeEntry = this.changeEntry.bind(this);
 	}
 
+	componentWillMount() {
+		var userId = localStorage.getItem('userId');
+		console.log("JOURN PAGE", userId);
+	}
+
 	componentDidUpdate(prevProps, prevState) {
 		if(prevState.entry.location !== this.state.entry.location) {
 			console.log("updated");
 
 			const entry = {
+				user: this.state.entry.user,
 				title: this.state.entry.title,
 				body: this.state.entry.body,
 				location: this.state.entry.location,
 				geoCode: this.state.entry.geoCode
 			}
 
-			axios.post('/journalentry', entry);
+			axios.post('/journalentry', entry).then(function(res) {
+
+			});
+			this.context.router.push('/dashboard/journal')
 		}
 	}
 
@@ -49,9 +56,10 @@ class JournalPage extends React.Component {
 
 		helpers.runQuery(this.state.entry.location).then(function(data) {
 			console.log("this is the journal data : ", data);
-
+			var userId = localStorage.getItem('userId');
 			this.setState({
 				entry: {
+					user: userId,
 					title: this.state.entry.title,
 					body: this.state.entry.body,
 					location: data.country,
@@ -83,12 +91,13 @@ class JournalPage extends React.Component {
 	}
 
 }
-
 JournalPage.contextTypes = {
-	router: PropTypes.object.isRequired
+  router: React.PropTypes.any
+};
+
+
+JournalPage.PropTypes = {
+    children: PropTypes.object.isRequired
 };
 
 export default JournalPage;
-
-
-

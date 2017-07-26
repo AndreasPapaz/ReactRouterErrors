@@ -28,10 +28,36 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.post('/journal', function(req,res) {
+        // console.log(req.body.userId);
+
+        Journal.find({
+            user: req.body.userId
+        }, function(err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+
+                var resultData = [];
+
+                data.forEach(function(journal) {
+                    resultData.push({
+                        title: journal.title,
+                        date: journal.date,
+                        body: journal.body,
+                        location: journal.location,
+                        geoCode: journal.geoCode
+                    });
+                });
+                res.send(resultData);
+            }
+        });
+    });
+
 
     app.post('/signup', function(req, res) {
         console.log("new signup rt");
-        console.log(req.body);
+        console.log(req.body.userId);
 
         var user = new User(req.body);
 
@@ -43,20 +69,6 @@ module.exports = function(app, passport) {
             }
         });
     });
-
-    // app.post('/login', function(req, res, next) {
-    //   passport.authenticate('local', function(err, user) {
-    //     if(err) {
-    //       console.log(err);
-    //     }
-    //     console.log(user);
-    //   })(req, res, next);
-    // });
-
-    // app.get('/dashboard', function(req, res) {
-    //     console.log('the url rt for dash');
-    //     console.log(req.body);
-    // });
 
 
    app.post('/getUser', function(req, res) {
