@@ -7,6 +7,8 @@ import Dropzone from 'react-dropzone'
 import superagent from 'superagent'
 import sha1 from 'sha1'
 
+import helpers from '../../utils/helpers';
+
 
 class JournalPage extends React.Component {
 
@@ -16,23 +18,48 @@ class JournalPage extends React.Component {
 			errors: {},
 			entry: {
 				title: '',
-				body: ''
+				body: '',
+				location: '',
+				geoCode: ''
 			}
 		};
 		this.processForm = this.processForm.bind(this);
 		this.changeEntry = this.changeEntry.bind(this);
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if(prevState.entry.location !== this.state.entry.location) {
+			console.log("updated");
+
+			const entry = {
+				title: this.state.entry.title,
+				body: this.state.entry.body,
+				location: this.state.entry.location,
+				geoCode: this.state.entry.geoCode
+			}
+
+			axios.post('/journalentry', entry);
+		}
+	}
+
 	processForm(event) {
 		event.preventDefault();
 
-		const cred = {
-			title: this.state.entry.title,
-			body: this.state.entry.body
-		}
+		console.log('this is the location . ', location);
 
-		console.log("this is the journal cred . ", cred);
-		//some axios post
+		helpers.runQuery(this.state.entry.location).then(function(data) {
+			console.log("this is the journal data : ", data);
+
+			this.setState({
+				entry: {
+					title: this.state.entry.title,
+					body: this.state.entry.body,
+					location: data.country,
+					geoCode: data.country_code
+				}
+			});
+		}.bind(this));
+
 	}
 
 	changeEntry(event) {

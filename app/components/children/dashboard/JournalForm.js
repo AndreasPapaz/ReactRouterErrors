@@ -8,7 +8,7 @@ const JournalForm = ({
 	entry,
 }) => (
 
-	<Form className='login-form' action='/' onSubmit={onSubmit}>
+	<Form className='' action='/' onSubmit={onSubmit}>
 
 		<Form.Field>
 			<label>Title</label>
@@ -17,6 +17,15 @@ const JournalForm = ({
 			onChange={onChange}
 			value={entry.title}
 			placeholder='what did you do today!' />
+		</Form.Field>
+
+		<Form.Field>
+			<label>Where did you visit?</label>
+			<input
+			name='location'
+			onChange={onChange}
+			value={entry.location}
+			placeholder='i.e.) Santorini, Greece' />
 		</Form.Field>
 
 		<Form.TextArea

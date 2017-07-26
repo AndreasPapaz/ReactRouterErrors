@@ -1,3 +1,4 @@
+const Journal = require("../model/Journal");
 const User = require("../model/User");
 const isAuthenticated = require('../passport/middleware/isAuthenticated');
 const passport = require('passport');
@@ -10,6 +11,37 @@ module.exports = function(app, passport) {
         if (req.user) {
             res.json(req.user);
         }
+    });
+
+    app.post('/journalentry', function(req, res) {
+        console.log(req.body);
+        console.log('journal entry');
+
+        var journal = new Journal(req.body);
+
+        journal.save(function(err, doc) {
+            if(err) {
+                res.send(err);
+            } else {
+                res.send(doc);
+            }
+        });
+    });
+
+
+    app.post('/signup', function(req, res) {
+        console.log("new signup rt");
+        console.log(req.body);
+
+        var user = new User(req.body);
+
+        user.save(function(err, doc) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(doc);
+            }
+        });
     });
 
     // app.post('/login', function(req, res, next) {
@@ -32,8 +64,6 @@ module.exports = function(app, passport) {
         User.findOne({
             _id: req.body.userId
         }, function(err, User) {
-            // console.log("this is the user");
-            // console.log(User);
             if (err) {
                 console.log(err);
             }
@@ -53,19 +83,4 @@ module.exports = function(app, passport) {
     //     res.sendFile(dir + '/public/index.html');
     // });
 
-
-    app.post('/signup', function(req, res) {
-        console.log("new signup rt");
-        console.log(req.body);
-
-        var user = new User(req.body);
-
-        user.save(function(err, doc) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send(doc);
-            }
-        });
-    });
 };
