@@ -8,7 +8,7 @@ const SignUpForm = ({
   onChange,
   user,
 }) => (
-    <Form className='login-form' action='/' onSubmit={onSubmit}>
+    <Form class='login-form' action='/' onSubmit={onSubmit}>
 
       <Form.Field>
         <label>First Name</label>

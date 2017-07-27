@@ -42,14 +42,6 @@ const LoginForm = ({
       </Button>
     </Link>
 
-    <Link to='/dashboard'>
-      <Button className='sign-up_btn' animated='fade'>
-        <Button.Content visible>
-          Dashboard
-        </Button.Content>
-      </Button>
-    </Link>
-
   </Form>
 );
 

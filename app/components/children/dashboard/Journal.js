@@ -38,7 +38,7 @@ class Journal extends React.Component {
 
 		return(
 			<div className="result-holder">
-				<h3>Your Journal</h3>
+				<h3 className="innerTitle">Your Journal</h3>
 				{this.state.journal.map(function(entry, i) {
 					return (
 

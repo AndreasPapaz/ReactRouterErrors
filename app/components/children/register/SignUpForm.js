@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
+import { Button, Checkbox, Form, Icon, Card} from 'semantic-ui-react';
 import { Link } from 'react-router';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 
 const SignUpForm = ({
@@ -8,45 +8,49 @@ const SignUpForm = ({
   onChange,
   user,
 }) => (
-  <Form className='login-form' action='/' onSubmit={onSubmit}>
-    <Form.Field>
-      <lable>Name</lable>
-      <input
-        name="name"
+    <Form className='login-form' action='/' onSubmit={onSubmit}>
+
+      <Form.Field>
+        <label>First Name</label>
+        <input
+        name='name'
         onChange={onChange}
         value={user.name}
-      />
-    </Form.Field>
+        placeholder='First Name' />
+      </Form.Field>
 
-    <Form.Field>
-      <lable>Email</lable>
-      <input
-        name="email"
+      <Form.Field>
+        <label>Birthdate</label>
+        <input
+        name='birthday'
+        type='date'
+        onChange={onChange}
+        value={user.birthday}
+        placeholder='Birth-Date' />
+      </Form.Field>
+
+      <Form.Field>
+        <label>Email</label>
+        <input
+        name='email'
         onChange={onChange}
         value={user.email}
-      />
-    </Form.Field>
+        placeholder='Email'/>
+      </Form.Field>
 
-    <Form.Field>
-      <lable>Password</lable>
-      <input
+      <Form.Field>
+        <label>Password</label>
+        <input
         type="password"
         name="password"
         onChange={onChange}
         value={user.password}
-      />
-    </Form.Field>
+        placeholder='Password' />
+      </Form.Field>
 
-    <Button type='submit' primary>Sign up</Button>
+      <Button type='submit' primary>Sign up</Button>
 
-    <Link to='/login'>
-      <Button className='sign-up_btn' animated='fade'>
-        <Button.Content visible>
-          Login
-        </Button.Content>
-      </Button>
-    </Link>
-  </Form>
+    </Form>
 );
 
 
@@ -57,3 +61,4 @@ SignUpForm.propTypes = {
 };
 
 export default SignUpForm;
+

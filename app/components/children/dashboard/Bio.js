@@ -5,6 +5,8 @@ import axios from 'axios';
 
 const test = (props) => {
 	return(
+		<div className="centerProf">
+		<h3 className="innerTitle">:) profile</h3>
           <Card>
 	            <Image src={props.img} />
 
@@ -15,32 +17,26 @@ const test = (props) => {
 
 	              <Card.Meta>
 	                <span className='date'>
-	                  Joined in 2017
+	                  D.O.B. {props.birthday}
 	                </span>
 	              </Card.Meta>
 
 	            <Card.Description>
-	                Adrian is a world traveler living in Chicago, IL.
+	                {props.name}...is a world traveler and just Awesome!
 	              </Card.Description>
 	            </Card.Content>
 
-	            <Card.Content extra>
-	              <a>
-	                <Icon name='user' />
-	                500+ Friends
-	              </a>
-	            </Card.Content>
 
 	            <Card.Content extra>
 	                  <List className='info-section'>
-	                  <List.Item icon='user' content='Adrian J. Segura' />
-	                  <List.Item icon='marker' content='Chicago, IL' />
-	                  <List.Item icon='mail' content={<a href='mailto:adrian@travlr.com'>jadrian@travlr.com</a>} />
-	                  <List.Item icon='linkify' content={<a href='http://www.github.com/adi727'>Github</a>} />
+	                  <List.Item icon='user' content={props.name} />
+	                  <List.Item icon='mail' content={props.email} />
+	                  <List.Item icon='calendar' content={props.birthday} />
 	                </List>
 	            </Card.Content>
 
           </Card>
+        </div>
     )
 }
 

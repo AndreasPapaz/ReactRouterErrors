@@ -64,12 +64,15 @@ class LoginPage extends React.Component {
 
   render() {
     return (
+      <div>
+      <h1 className="homeTitle">travlr</h1>
       <LoginForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
         errors={this.state.errors}
         user={this.state.user}
       />
+      </div>
     );
   }
 

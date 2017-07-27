@@ -9,4 +9,12 @@ export default class Main extends Component {
         </div>
     );
   }
+  //  getPageTitle(){
+  // 	console.log(this.props.location);
+  // 	switch(this.props.location.pathname){
+  //     default: 
+  // 			return '';
+  // 	}
+  // }
 }
+

@@ -6,7 +6,7 @@ import LoginPage from '../components/children/register/LoginPage';
 import SignUpPage from '../components/children/register/SignUpPage';
 import Dashboard from '../components/Dashboard';
 import Bio from '../components/children/dashboard/Bio';
-import JournalPage from '../components/children/dashboard/JournalPage';
+import EntryPage from '../components/children/dashboard/EntryPage';
 import Journal from '../components/children/dashboard/Journal';
 
 export default (
@@ -15,7 +15,7 @@ export default (
 		<Route path='/' component={Main}>
 			<Route path='dashboard' component={Dashboard}>
 				<Route path='bio' component={Bio} />
-				<Route path='entry' component={JournalPage} />
+				<Route path='entry' component={EntryPage} />
 				<Route path='journal' component={Journal} />
 				<IndexRoute component={Bio} />
 			</Route>

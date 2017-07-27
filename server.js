@@ -19,8 +19,9 @@ var user = require('./model/User.js');
 var mongoose = require('mongoose');
 mongoose.Promise = Promise;
 
+
 // mongoose.connect("mongodb://localhost/travlr");
-mongoose.connect("mongodb://localhost/travlr");
+mongoose.connect('mongodb://heroku_029r9jnm:qeqr4el8h0o2ge6m6v3hd35iou@ds127063.mlab.com:27063/heroku_029r9jnm');
 var db = mongoose.connection;
 
 db.on('error', function(error) {

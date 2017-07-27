@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone'
 import superagent from 'superagent'
 import sha1 from 'sha1'
 
-const JournalForm = ({
+const EntryForm = ({
 	onSubmit,
 	onDrop,
 	onChange,
@@ -45,10 +45,10 @@ const JournalForm = ({
 );
 
 
-JournalForm.propTypes = {
+EntryForm.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	entry: PropTypes.object.isRequired
 };
 
-export default JournalForm;
+export default EntryForm;

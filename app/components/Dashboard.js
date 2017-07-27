@@ -6,12 +6,12 @@ import { Link, browserHistory } from 'react-router';
 
 export default class Dashboard extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			activeItem: ''
-		};
-	}
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = {
+	// 		activeItem: ''
+	// 	};
+	// }
 
 	handleItemClick(e, {name}) {
 		browserHistory.push('/dashboard/' + name);
@@ -19,13 +19,25 @@ export default class Dashboard extends Component {
 
 	componentWillMount() {
 
+		this.state = { activeItem: ''};
+
 		var userId = localStorage.getItem('userId');
 		console.log('USERID : ', userId);
 		this.checkId(userId);
 		this.signOut = this.signOut.bind(this);
 	}
 
-	signOut() {
+	initializeState() {
+		this.setState({
+			name: '',
+			img: '',
+			birthday: '',
+			email: ''
+		})
+	}
+
+	signOut(e) {
+		e.preventDefault();
 		localStorage.clear();
 		this.context.router.push('/');
 	}
@@ -36,9 +48,10 @@ export default class Dashboard extends Component {
 
 			axios.post('/getUser', {'userId': userId}).then(res => {
 				this.setState({
-					user: res.data._id,
 					name: res.data.name,
-					img: res.data.img
+					img: res.data.img,
+					birthday: res.data.birthday,
+					email: res.data.email
 				});
 				if (!res) {
 					this.context.router.push('/signup');
@@ -56,27 +69,59 @@ export default class Dashboard extends Component {
 		const childrenWithProps = React.Children.map(this.props.children, child => {
 			return React.cloneElement(child, {
 				name: this.state.name,
-				img: this.state.img
+				img: this.state.img,
+				birthday: this.state.birthday,
+				email: this.state.email
 			});
 		});
 
 
 	return(
 		<div>
-		<Grid>
-		<Grid.Column width={4}>
-			<Menu fluid vertical tabular>
-			<Menu.Item name='bio' active={activeItem === 'bio'} onClick={this.handleItemClick} />
-			<Menu.Item name='entry' active={activeItem === 'entry'} onClick={this.handleItemClick} />
-			<Menu.Item name='journal' active={activeItem === 'journal'} onClick={this.handleItemClick} />
-			<Menu.Item name='logout' onClick={this.signOut} active={activeItem === 'logout'} />
-			</Menu>
-		</Grid.Column>
+		 <Menu stackable>
+        <Menu.Item className="title">
+          travlr
+        </Menu.Item>
 
-		<Grid.Column stretched width={12}>
-			<Segment>
+        <Menu.Item
+          name='bio'
+          active={activeItem === 'bio'}
+          onClick={this.handleItemClick}
+        >
+          Bio
+        </Menu.Item>
+
+        <Menu.Item
+          name='entry'
+          active={activeItem === 'entry'}
+          onClick={this.handleItemClick}
+        >
+          Entry
+        </Menu.Item>
+
+        <Menu.Item
+          name='journal'
+          active={activeItem === 'journal'}
+          onClick={this.handleItemClick}
+        >
+          Journal
+        </Menu.Item>
+
+        <Menu.Item
+          name='logout'
+          active={activeItem === 'logout'}
+          onClick={this.signOut}
+        >
+          Logout
+        </Menu.Item>
+      </Menu>
+		<Grid>
+		<Grid.Column stretched width={3}></Grid.Column>
+
+		<Grid.Column stretched width={10}>
+
 				{childrenWithProps}
-			</Segment>
+
 		</Grid.Column>
 		</Grid>
 		</div>

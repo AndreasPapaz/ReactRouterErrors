@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { browserHistory, Router } from 'react-router';
-import { Image } from 'semantic-ui-react'
-import JournalForm from './JournalForm';
+import { Image, Segment, Button } from 'semantic-ui-react'
+import EntryForm from './EntryForm';
 import axios from 'axios';
 import Dropzone from 'react-dropzone'
 import superagent from 'superagent'
@@ -11,7 +11,7 @@ import sha1 from 'sha1'
 import helpers from '../../utils/helpers';
 
 
-class JournalPage extends React.Component {
+class EntryPage extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -127,27 +127,29 @@ class JournalPage extends React.Component {
 
 	render() {
 		return(
-			<div>
-				<Dropzone onDrop={this.uploadFile.bind(this)} />
-				<Image src={this.state.entry.img} size='small' />
-				<JournalForm
+			<Segment>
+				<Dropzone multiple={false} style={{margin: 0}} onDrop={this.uploadFile.bind(this)} >
+				<Button primary>ADD PHOTO</Button>
+				</Dropzone>
+				<Image className="entryPhoto" src={this.state.entry.img} size='medium' />
+				<EntryForm
 				onSubmit={this.processForm}
 				onChange={this.changeEntry}
 				entry={this.state.entry}
 				/>
-			</div>
+			</Segment>
 		);
 	}
 
 }
 
-JournalPage.contextTypes = {
+EntryPage.contextTypes = {
   router: React.PropTypes.any
 };
 
 
-JournalPage.PropTypes = {
+EntryPage.PropTypes = {
     children: PropTypes.object.isRequired
 };
 
-export default JournalPage;
+export default EntryPage;

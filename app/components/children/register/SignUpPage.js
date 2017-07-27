@@ -1,11 +1,14 @@
 import React, { PropTypes } from 'react';
 import { browserHistory, Router } from 'react-router';
-import { Image } from 'semantic-ui-react'
-import SignUpForm2 from './SignUPForm2';
+import { Image, Segment, Button } from 'semantic-ui-react'
+import SignUpForm from './SignUPForm';
 import axios from 'axios';
 import Dropzone from 'react-dropzone'
 import superagent from 'superagent'
 import sha1 from 'sha1'
+
+
+
 
 class SignUpPage extends React.Component {
 	constructor(props) {
@@ -107,14 +110,24 @@ class SignUpPage extends React.Component {
 
  		return (
       <div>
-        <h4> {this.state.imageLink} </h4>
-        <Dropzone onDrop={this.uploadFile.bind(this)} />
-          <Image src={this.state.user.img} size='small' />
-        <SignUpForm2
+      <h1 className="homeTitle">travlr</h1>
+      <div className='login-form'>
+
+
+        <div className="signupPhoto">
+          <Dropzone style={{margin: 0}} onDrop={this.uploadFile.bind(this)} >
+            <Button primary>ADD PHOTO</Button>
+          </Dropzone>
+          <Image className="entryPhoto" src={this.state.user.img} size='small' />
+        </div>
+
+
+        <SignUpForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
         user={this.state.user}
         />
+      </div>
       </div>
  		);
  	}
