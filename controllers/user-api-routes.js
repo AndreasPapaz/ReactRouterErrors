@@ -93,12 +93,12 @@ module.exports = function(app, passport) {
         });
    });
 
-    // app.use('*', function(req, res) {
-    //     var dir = __dirname;
-    //     var dirSplit = dir.split("controllers");
-    //     dir = dirSplit[0];
+    app.use('*', function(req, res) {
+        var dir = __dirname;
+        var dirSplit = dir.split("controllers");
+        dir = dirSplit[0];
 
-    //     res.sendFile(dir + '/public/index.html');
-    // });
+        res.sendFile(dir + '/public/index.html');
+    });
 
 };
