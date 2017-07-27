@@ -13,7 +13,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        include: /app/,
         loader: 'babel-loader',
         query: {
           // These are the specific transformations we'll be using.
@@ -24,5 +24,6 @@ module.exports = {
         loader: 'style-loader!css-loader'
       }
     ]
-  }
+  },
+  devtool: "eval-source-map"
 }
