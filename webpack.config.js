@@ -5,7 +5,8 @@ module.exports = {
 
   // Then output into this file
   output: {
-    filename: "public/bundle.js"
+    path: 'public',
+    filename: 'bundle.js'
   },
 
   // This will be what we do
