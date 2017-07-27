@@ -5,6 +5,9 @@ const Schema = mongoose.Schema;
 
 // define the User model schema
 const JournalSchema = new Schema({
+  img: {
+    type: String
+  },
   user: {
     type: String
   },
@@ -21,7 +24,8 @@ const JournalSchema = new Schema({
     type: String
   },
   Date: {
-  	type: String
+  	type: Date,
+    default: Date.now
   }
 });
 

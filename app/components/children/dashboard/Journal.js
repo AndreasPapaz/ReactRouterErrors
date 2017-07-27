@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { browserHistory, Router } from 'react-router';
+import { Card, Flag, Segment, Grid } from 'semantic-ui-react';
 import Result from './Result';
 import axios from 'axios';
 
@@ -15,11 +16,9 @@ class Journal extends React.Component {
 
 	componentWillMount() {
 		var userId = localStorage.getItem('userId');
-		console.log("from the journal : ", userId);
 
 		axios.post('/journal', {'userId': userId}).then(res => {
 			if(res.data.length > 0) {
-				console.log("its greater than 0");
 				const uploadedJournal = res.data;
 
 				let updatedPosts = Object.assign([], this.state.journal);
@@ -29,6 +28,8 @@ class Journal extends React.Component {
 					journal: uploadedJournal
 				});
 
+			} else {
+				this.context.router.push('/dashboard/entry');
 			}
 		});
 	}
@@ -40,7 +41,8 @@ class Journal extends React.Component {
 				<h3>Your Journal</h3>
 				{this.state.journal.map(function(entry, i) {
 					return (
-						<Result key={i} url={entry.url} title={entry.title} location={entry.location} body={entry.body} geoCode={entry.geoCode} date={entry.date} />
+
+						<Result key={i} id={entry.id} url={entry.url} title={entry.title} location={entry.location} body={entry.body} img={entry.img} geoCode={entry.geoCode} date={entry.date} />
 					);
 				})}
 			</div>

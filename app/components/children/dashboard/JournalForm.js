@@ -39,7 +39,7 @@ const JournalForm = ({
 		value={entry.body}
 		/>
 
-		 <Button type='submit' primary>Sign up</Button>
+		 <Button type='submit' primary>Post</Button>
 
 	</Form>
 );

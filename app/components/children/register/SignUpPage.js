@@ -82,7 +82,7 @@ class SignUpPage extends React.Component {
     img: this.state.user.img
     };
 
-    console.log("this is your cred : ", cred); 
+    console.log("this is your cred : ", cred);
     axios.post('/signup', cred).then(function(res) {
       console.log("you are hitting the signup route");
     	console.log(res.data._id);

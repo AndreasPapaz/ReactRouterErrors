@@ -11,7 +11,10 @@ const UserSchema = new Schema({
   },
   birthday: String,
   name: String,
-  password: String,
+  password: {
+    type: String,
+    required: true
+  },
   img: String,
   journal: {
     type: Schema.Types.ObjectId,

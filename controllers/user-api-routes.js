@@ -3,20 +3,16 @@ const User = require("../model/User");
 const isAuthenticated = require('../passport/middleware/isAuthenticated');
 const passport = require('passport');
 
+
 module.exports = function(app, passport) {
 
     app.post("/login", passport.authenticate("local"), function(req, res){
-        // console.log("you have hit the login route" + req.user);
-        console.log(req.isAuthenticated === true);
         if (req.user) {
             res.json(req.user);
         }
     });
 
     app.post('/journalentry', function(req, res) {
-        console.log(req.body);
-        console.log('journal entry');
-
         var journal = new Journal(req.body);
 
         journal.save(function(err, doc) {
@@ -28,8 +24,20 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.post('/delete', function(req, res) {
+        Journal.remove({_id: req.body.id}, function(err, doc) {
+            if(err) {
+                console.log(err);
+            } else {
+                console.log("This is the new doc from delete");
+                console.log("==========================");
+                // console.log(doc);
+                res.send(doc);
+            }
+        });
+    });
+
     app.post('/journal', function(req,res) {
-        // console.log(req.body.userId);
 
         Journal.find({
             user: req.body.userId
@@ -42,6 +50,8 @@ module.exports = function(app, passport) {
 
                 data.forEach(function(journal) {
                     resultData.push({
+                        id: journal._id,
+                        img: journal.img,
                         title: journal.title,
                         date: journal.date,
                         body: journal.body,
@@ -56,9 +66,6 @@ module.exports = function(app, passport) {
 
 
     app.post('/signup', function(req, res) {
-        console.log("new signup rt");
-        console.log(req.body.userId);
-
         var user = new User(req.body);
 
         user.save(function(err, doc) {
@@ -72,7 +79,6 @@ module.exports = function(app, passport) {
 
 
    app.post('/getUser', function(req, res) {
-    // console.log(req.body);
         User.findOne({
             _id: req.body.userId
         }, function(err, User) {
