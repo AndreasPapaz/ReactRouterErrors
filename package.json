@@ -4,8 +4,8 @@
   "description": "Travel Journal Social Media App",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "bundle": "webpack"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
