@@ -1,3 +1,5 @@
+// let webpack = require('webpack');
+
 module.exports = {
 
   // This code will be compiled
@@ -5,26 +7,22 @@ module.exports = {
 
   // Then output into this file
   output: {
-    path: 'public',
-    filename: 'bundle.js'
+    filename: "public/bundle.js"
   },
 
   // This will be what we do
-  module: {
+    module: {
     loaders: [
       {
         test: /\.jsx?$/,
+        // only process files in app folder
         include: /app/,
         loader: 'babel-loader',
         query: {
-          // These are the specific transformations we'll be using.
+          // transformations
           presets: ['react', 'es2015']
         }
-      },{
-        test: /\.css?$/,
-        loader: 'style-loader!css-loader'
       }
     ]
-  },
-  devtool: "eval-source-map"
+  }
 }
