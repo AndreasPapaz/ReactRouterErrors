@@ -34,11 +34,14 @@ db.once('open', function() {
 
 // //Look for static files
 // app.use('/static', express.static('./server/static'));
-app.use(express.static(__dirname + '/public'));
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('public'));
+// app.use(express.static(__dirname + '/public'));
+// app.use(morgan('dev'));
+app.use(bodyParser.text());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(methodOverride("_method"));
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+// app.use(methodOverride("_method"));
 
 //Sessions
 app.use(partials());
