@@ -4,7 +4,7 @@
   "description": "Travel Journal Social Media App",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --use_strict index.js",
+    "start": "nodemon server.js",
     "bundle": "webpack"
   },
   "repository": {
